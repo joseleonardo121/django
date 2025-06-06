@@ -1,0 +1,56 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <br><br><br><br>
+    <style>
+    </style>
+    <div>
+        <form method="GET" action="">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <label for="dni">DNI:</label>
+                    <select name="dni" id="dni">
+                        <option value="">Todos</option>
+                        {% for dni in dnis %}
+                            <option value="{{ dni }}" {% if dni == request.GET.dni %}selected{% endif %}>{{ dni }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <button type="submit">Filtrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">DNI</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">APELLIDO</th>
+                    <th scope="col">CELULAR</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tareas %}
+                <tr>
+                    <th scope="row">{{ tarea.dni }}</th>
+                    <td>{{ tarea.nombre }}</td>
+                    <td>{{ tarea.apellido }}</td>
+                    <td>{{ tarea.celular }}</td>
+                    <td>
+                        <a href="{% url 'editar_cliente' tarea.dni %}" class="btn btn-warning btn-sm">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <a href="{% url 'agregar_cliente' %}" class="btn btn-danger btn-lg" style="border: 4px solid #dc3545;">AGREGAR</a>
+    </div>
+</div>
+{% endblock %}

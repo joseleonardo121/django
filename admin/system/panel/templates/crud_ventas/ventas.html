@@ -1,0 +1,57 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="text-right mt-3">
+            <a href="{% url 'agregar_venta' %}" class="btn btn-success">Agregar Venta</a>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="GET">
+                    <div class="input-group">
+                        <input type="date" name="fecha" class="form-control" value="{{ fecha }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Filtrar</button>
+                            <a href="{% url 'ventas' %}" class="btn btn-danger">Limpiar filtros</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Número de Ticket</th>
+                        <th>Descripción</th>
+                        <th>Monto</th>
+                        <th>Método de Pago</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venta in ventas %}
+                    <tr>
+                        <td>{{ venta.numero_ticket }}</td>
+                        <td>{{ venta.descripcion }}</td>
+                        <td>{{ venta.monto }}</td>
+                        <td>{{ venta.get_metodo_pago_display }}</td>
+                        <td>{{ venta.fecha }}</td>
+                        <td>{{ venta.get_estado_display }}</td>
+                        <td>
+                            <a href="{% url 'editar_venta' venta.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- /page content -->
+{% endblock %}

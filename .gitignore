@@ -1,0 +1,16 @@
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+*.sqlite3
+*.log
+node_modules/
+
+# Ignorar toda la carpeta vendors dentro de static (que está causando problemas)
+admin/system/panel/static/FrWork/admin_lte/vendors/
+
+
+

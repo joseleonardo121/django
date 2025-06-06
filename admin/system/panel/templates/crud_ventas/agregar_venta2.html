@@ -1,0 +1,37 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+    <div class="right_col" role="main">
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Agregar Venta 2</h1>
+            <form method="POST" action="{% url 'agregar_venta2' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="monto">Monto</label>
+                    <input type="number" class="form-control" id="monto" name="monto" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="metodo_pago">Método de Pago</label>
+                    <select class="form-control" id="metodo_pago" name="metodo_pago" required>
+                        <option value="E">Efectivo</option>
+                        <option value="Y">Yape</option>
+                        <option value="T">Tarjeta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <select class="form-control" id="estado" name="estado" disabled>
+                        <option value="N" selected>No Revisado</option>
+                    </select>
+                    <input type="hidden" name="estado" value="N">
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Venta 2</button>
+                <a href="{% url 'ventas2' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

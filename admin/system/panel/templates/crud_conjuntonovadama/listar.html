@@ -1,0 +1,163 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div>
+            <form method="GET" action="">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <label for="color">Color:</label>
+                        <select name="color" id="color">
+                            <option value="">Todos</option>
+                            {% for color in colores %}
+                                <option value="{{ color }}" {% if color == request.GET.color %}selected{% endif %}>{{ color }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="talla">Talla:</label>
+                        <select name="talla" id="talla">
+                            <option value="">Todas</option>
+                            {% for talla in tallas %}
+                                <option value="{{ talla }}" {% if talla == request.GET.talla %}selected{% endif %}>{{ talla }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="marca">Marca:</label>
+                        <select name="marca" id="marca">
+                            <option value="">Todas</option>
+                            {% for marca in marcas %}
+                                <option value="{{ marca }}" {% if marca == request.GET.marca %}selected{% endif %}>{{ marca }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="codigo">Codigo:</label>
+                        <select name="codigo" id="codigo">
+                            <option value="">Todas</option>
+                            {% for codigo in codigos %}
+                                <option value="{{ codigo }}" {% if codigo == request.GET.codigo %}selected{% endif %}>{{ codigo }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit">Filtrar</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+    </head>
+    <body>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">CODIGO</th>
+                        <th scope="col">TALLA</th>
+                        <th scope="col">MARCA</th>
+                        <th scope="col">DISEÑO</th>
+                        <th scope="col">COLOR</th>
+                        <th scope="col">PRECIO</th>
+                        <th scope="col">S1</th>
+                        <th scope="col">S2</th>
+                        <th scope="col">S3</th>
+                        <th scope="col">A</th>
+                        <th scope="col">GLOBAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tarea in tareas %}
+                    <tr>
+                        <th scope="row">{{ tarea.Codigo }}</th>
+                        <td>{{ tarea.Talla }}</td>
+                        <td>{{ tarea.Marca }}</td>
+                        <td>{{ tarea.Diseño }}</td>
+                        <td>{{ tarea.Color }}</td>
+                        <td>{{ tarea.Precio }}</td>
+                        <td>{{ tarea.S1 }}</td>
+                        <td>{{ tarea.S2 }}</td>
+                        <td>{{ tarea.S3 }}</td>
+                        <td>{{ tarea.Almacen }}</td>
+                        <td>{{ tarea.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    <!--   ##################################################### -->
+    <!--   ##################################################### -->
+    <!--   ##################################################### -->
+    <!--   ##################################################### -->
+
+    <div style="display: flex; height: 9vh; justify-content: center; align-items: center;">
+        <h3>EXCESO DE PRENDAS</h3>
+    </div>
+
+<!--   ##################################################### -->
+<!--   ##################################################### -->
+<!--   ##################################################### -->
+<!--   ##################################################### -->
+
+
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">CODIGO</th>
+                    <th scope="col">TALLA</th>
+                    <th scope="col">MARCA</th>
+                    <th scope="col">DISEÑO</th>
+                    <th scope="col">COLOR</th>
+                    <th scope="col">CANTIDAD</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tareas %}
+                    {% if tarea.total >= 4 %}
+                    <tr>
+                        <th scope="row">{{ tarea.Codigo }}</th>
+                        <td>{{ tarea.Talla }}</td>
+                        <td>{{ tarea.Marca }}</td>
+                        <td>{{ tarea.Diseño }}</td>
+                        <td>{{ tarea.Color }}</td>
+                        <td>{{ tarea.total }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <BR></BR>
+    <BR></BR>
+    <!-- Botón estilizado debajo de la segunda tabla -->
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <a href="pedidoconjuntonova" class="btn btn-danger btn-lg" style="border: 4px solid #dc3545;">PEDIDO</a>
+        </div>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+    <!--   ##################################################### -->
+    <!--   ##################################################### -->
+    <!--   ##################################################### -->
+    <!--   ##################################################### -->
+
+    </div>
+    <!-- /page content -->
+
+{% endblock %}

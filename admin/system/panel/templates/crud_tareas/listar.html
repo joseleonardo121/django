@@ -1,0 +1,35 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">TIENDA</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">FECHA DE REGISTRO</th>
+                        <th scope="col">REALIZADO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tarea in tareas %}
+                    <tr>
+                        <th scope="row">{{ tarea.id }}</th>
+                        <td>{{ tarea.tienda }}</td>
+                        <td>{{ tarea.descripcion }}</td>
+                        <td>{{ tarea.f_registro }}</td>
+                        <td>{{ tarea.realizado }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- /page content -->
+
+{% endblock %}

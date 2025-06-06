@@ -1,0 +1,41 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+
+    <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">CODIGO</th>
+                            <th scope="col">TALLA</th>
+                            <th scope="col">MARCA</th>
+                            <th scope="col">DISEÑO</th>
+                            <th scope="col">COLOR</th>
+                            <th scope="col">CANTIDAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tarea in tareas %}
+                            {% if tarea.total <= 1 %}
+                            <tr>
+                                <th scope="row">{{ tarea.Codigo }}</th>
+                                <td>{{ tarea.Talla }}</td>
+                                <td>{{ tarea.Marca }}</td>
+                                <td>{{ tarea.Diseño }}</td>
+                                <td>{{ tarea.Color }}</td>
+                                <td>{{ tarea.total }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+                <!-- Botón estilizado debajo de la segunda tabla -->
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <a href="listarconjuntolicra" class="btn btn-danger btn-lg" style="border: 4px solid #dc3545;">ATRAS</a>
+        </div>
+        </div>
+        <!-- /page content -->
+{% endblock %}

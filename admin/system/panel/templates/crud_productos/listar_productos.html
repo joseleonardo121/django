@@ -1,0 +1,3619 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+
+<div class="right_col" role="main">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Productos</h1>
+
+        <!-- Formulario de Filtros -->
+        <form method="GET" action="{% url 'listar_productos' %}" class="mb-4">
+            <div class="row">
+                <!-- Filtro por tipo -->
+                <div class="col-md-3 mb-2">
+                    <label for="filtro_tipo">Filtrar por tipo </label>
+                    <select class="form-control" id="filtro_tipo" name="filtro">
+                        <option value="todos" {% if filtro_tipo == 'todos' %}selected{% endif %}>Todos</option>
+                        <option value="loma" {% if filtro_tipo == 'loma' %}selected{% endif %}> CD . Loma </option>
+                        <option value="terry" {% if filtro_tipo == 'terry' %}selected{% endif %}> CD . Terry </option>
+                        <option value="bosse" {% if filtro_tipo == 'bosse' %}selected{% endif %}> CD . Bosse </option>
+                        <option value="licra" {% if filtro_tipo == 'licra' %}selected{% endif %}>CD . Licra </option>
+                        <option value="nova" {% if filtro_tipo == 'nova' %}selected{% endif %}> CD . Nova </option>
+                        <option value="interfil" {% if filtro_tipo == 'interfil' %}selected{% endif %}> CD . Interfil </option>
+                        <option value="elastic" {% if filtro_tipo == 'elastic' %}selected{% endif %}> CD . Elastic </option>
+                        <option value="plush" {% if filtro_tipo == 'plush' %}selected{% endif %}> CD . Plush </option>
+                        <option value="franela" {% if filtro_tipo == 'franela' %}selected{% endif %}> CD . Franela </option>
+                        <option value="poliester" {% if filtro_tipo == 'poliester' %}selected{% endif %}> CD . Poliester </option>
+                        <option value="polifresh" {% if filtro_tipo == 'polifresh' %}selected{% endif %}> CD . Polifresh </option>
+                        <option value="tela_mojada" {% if filtro_tipo == 'tela_mojada' %}selected{% endif %}> CD . Tela Mojada </option>
+                        <option value="franela_plush" {% if filtro_tipo == 'franela_plush' %}selected{% endif %}> CD . Franela Plush </option>
+                        <option value="cortaviento_reversible" {% if filtro_tipo == 'cortaviento_reversible' %}selected{% endif %}>CD . Cortaviento Reversible </option>
+                        <!--varon-->
+                        <option value="terry_varon" {% if filtro_tipo == 'terry_varon' %}selected{% endif %}> CV . Terry </option>
+                        <option value="nova_varon" {% if filtro_tipo == 'nova_varon' %}selected{% endif %}> CV . Nova </option>
+                        <option value="elastic_varon" {% if filtro_tipo == 'elastic_varon' %}selected{% endif %}> CV . Elastic </option>
+                        <option value="interfil_varon" {% if filtro_tipo == 'interfil_varon' %}selected{% endif %}> CV .Interfil </option>
+                        <option value="bosse_varon" {% if filtro_tipo == 'bosse_varon' %}selected{% endif %}> CV . Bosse </option>
+                        <option value="franela_varon" {% if filtro_tipo == 'franela_varon' %}selected{% endif %}> CV . Franela </option>
+                        <option value="poliester_varon" {% if filtro_tipo == 'poliester_varon' %}selected{% endif %}> CV .Poliester </option>
+                        <option value="telamojada_varon" {% if filtro_tipo == 'telamojada_varon' %}selected{% endif %}> CV . Tela Mojada </option>
+                        <option value="cortaviento_varon" {% if filtro_tipo == 'cortaviento_varon' %}selected{% endif %}> CV . Cortaviento </option>
+                        <option value="franelaplush_varon" {% if filtro_tipo == 'franelaplush_varon' %}selected{% endif %}> CV . Franela Plush </option>
+                        <option value="cortaviento_reversible_varon" {% if filtro_tipo == 'cortaviento_reversible_varon' %}selected{% endif %}> CV . Cortaviento Reversible </option>
+                        <option value="polifresh_varon" {% if filtro_tipo == 'polifresh_varon' %}selected{% endif %}> CV . Polifresh </option>
+                        <!--unidad sola varon-->
+                        <option value="pantalonfranelabotarecta_varon" {% if filtro_tipo == 'pantalonfranelabotarecta_varon' %}selected{% endif %}> UV . Pantalon Franela BR</option>
+                        <option value="pantalonnovabotarecta_varon" {% if filtro_tipo == 'pantalonnovabotarecta_varon' %}selected{% endif %}> UV . Pantalon Nova BR</option>
+                        <option value="pantaloninterfilbotarecta_varon" {% if filtro_tipo == 'pantaloninterfilbotarecta_varon' %}selected{% endif %}> UV . Pantalon Interfil BR</option>
+                        <option value="pantalonterrybotarecta_varon" {% if filtro_tipo == 'pantalonterrybotarecta_varon' %}selected{% endif %}> UV . Pantalon Terry BR</option>
+                        <option value="pantalonbossebotarecta_varon" {% if filtro_tipo == 'pantalonbossebotarecta_varon' %}selected{% endif %}> UV . Pantalon Bosse BR</option>
+                        <option value="pantaloncortavientobotarecta_varon" {% if filtro_tipo == 'pantaloncortavientobotarecta_varon' %}selected{% endif %}> UV . Pantalon Cortaviento BR</option>                        
+                        <option value="joggerterry_varon" {% if filtro_tipo == 'joggerterry_varon' %}selected{% endif %}> UV . Jogger Terry </option>                        
+                        <option value="joggerfranela_varon" {% if filtro_tipo == 'joggerfranela_varon' %}selected{% endif %}> UV . Jogger Franela</option>                        
+                        <option value="pantalonetalicra_varon" {% if filtro_tipo == 'pantalonetalicra_varon' %}selected{% endif %}> UV . Pantaloneta licra</option>                        
+                        <option value="casacacortaviento_varon" {% if filtro_tipo == 'casacacortaviento_varon' %}selected{% endif %}> UV . Casaca Cortaviento </option>                        
+                        <option value="bividilicra_varon" {% if filtro_tipo == 'bividilicra_varon' %}selected{% endif %}> UV . Bividi Licra</option>     
+                        <option value="pololicra_varon" {% if filtro_tipo == 'pololicra_varon' %}selected{% endif %}> UV . Polo Licra</option>                        
+                        <option value="poloalgodon_varon" {% if filtro_tipo == 'poloalgodon_varon' %}selected{% endif %}> UV . Polo Algodon  </option>                        
+                        <option value="poloversize_varon" {% if filtro_tipo == 'poloversize_varon' %}selected{% endif %}> UV . Polo Oversize  </option>                        
+                        <option value="polocompresor_varon" {% if filtro_tipo == 'polocompresor_varon' %}selected{% endif %}> UV . Polo Compresor </option>     
+                        <option value="shortnova_varon" {% if filtro_tipo == 'shortnova_varon' %}selected{% endif %}> UV . Short Nova </option>     
+                        <option value="shortelastic_varon" {% if filtro_tipo == 'shortelastic_varon' %}selected{% endif %}> UV . Short Elastic</option>                        
+                        <option value="shorttelamojada_varon" {% if filtro_tipo == 'shorttelamojada_varon' %}selected{% endif %}> UV . Short Tela Mojada  </option>                        
+                        <option value="shortterry_varon" {% if filtro_tipo == 'shortterry_varon' %}selected{% endif %}> UV . Short Terry </option>                          
+                        <!--unidad sola dama-->
+                        <option value="pantalonetalicra_dama" {% if filtro_tipo == 'pantalonetalicra_dama' %}selected{% endif %}> UD . Panaloneta Licra </option> 
+                        <option value="pantalonetaterry_dama" {% if filtro_tipo == 'pantalonetaterry_dama' %}selected{% endif %}> UD . Pantaloneta Terry </option>                                                                      
+                        <option value="pantalonbotarectanova_dama" {% if filtro_tipo == 'pantalonbotarectanova_dama' %}selected{% endif %}> UD . Pantalon Nova BR </option>                          
+                        <option value="pantaloninterfil_dama" {% if filtro_tipo == 'pantaloninterfil_dama' %}selected{% endif %}> UD . Pantalon Interfil BR </option>                                             
+                        <option value="pantalonterry_dama" {% if filtro_tipo == 'pantalonterry_dama' %}selected{% endif %}> UD . Pantalon Terry BR </option>                                             
+                        <option value="pantalonfranela_dama" {% if filtro_tipo == 'pantalonfranela_dama' %}selected{% endif %}> UD . Pantalon Franela BR </option>                                             
+                        <option value="pantalonlicrabotarecta_dama" {% if filtro_tipo == 'pantalonlicrabotarecta_dama' %}selected{% endif %}> UD . Pantalon Licra BR  </option>                                             
+                        <option value="pantalonloma_dama" {% if filtro_tipo == 'pantalonloma_dama' %}selected{% endif %}> UD . Pantalon Loma BR  </option>                                             
+                        <option value="pantalonpalazo_dama" {% if filtro_tipo == 'pantalonpalazo_dama' %}selected{% endif %}> UD . Pantalon Palazo   </option>                                             
+                        <option value="joggercargo_dama" {% if filtro_tipo == 'joggercargo_dama' %}selected{% endif %}> UD . Jogger Cargo </option>                                             
+                        <option value="joggerinterfil_dama" {% if filtro_tipo == 'joggerinterfil_dama' %}selected{% endif %}> UD . Jogger Interfil </option>                                             
+                        <option value="joggeroversizefranela_dama" {% if filtro_tipo == 'joggeroversizefranela_dama' %}selected{% endif %}> UD . Jogger Oversize Franela </option>                                             
+                        <option value="joggeroversizeterry_dama" {% if filtro_tipo == 'joggeroversizeterry_dama' %}selected{% endif %}> UD . Jogger Oversize Terry </option>                                             
+                        <option value="joggerbotapiefranela_dama" {% if filtro_tipo == 'joggerbotapiefranela_dama' %}selected{% endif %}> UD . Jogger Botapie Franela </option>                                             
+                        <option value="joggerbotapieterry_dama" {% if filtro_tipo == 'joggerbotapieterry_dama' %}selected{% endif %}> UD . Jogger Botapie Terry </option>                                             
+                        <option value="pololicramangacorta_dama" {% if filtro_tipo == 'pololicramangacorta_dama' %}selected{% endif %}> UD . Polo Licra Manga Corta  </option>                                             
+                        <option value="pololicramangalarga_dama" {% if filtro_tipo == 'pololicramangalarga_dama' %}selected{% endif %}> UD . Polo Licra Manga Larga </option>
+                        <option value="poloversize_dama" {% if filtro_tipo == 'poloversize_dama' %}selected{% endif %}> UD . Polo Oversize  </option>                                                                   
+                        <option value="polocroplicra_dama" {% if filtro_tipo == 'polocroplicra_dama' %}selected{% endif %}> UD . Polos Crop Licra </option>    
+                        <option value="shortlicra_dama" {% if filtro_tipo == 'shortlicra_dama' %}selected{% endif %}> UD . Short Licra </option>                                             
+                        <option value="bikerlicra_dama" {% if filtro_tipo == 'bikerlicra_dama' %}selected{% endif %}> UD . Biker Licra  </option>                                             
+                        <option value="snikerlicra_dama" {% if filtro_tipo == 'snikerlicra_dama' %}selected{% endif %}> UD . Sniker Licra </option>                                             
+                        <option value="faldashortlicra_dama" {% if filtro_tipo == 'faldashortlicra_dama' %}selected{% endif %}> UD . Falda Short Licra </option>    
+                        <option value="shortterry_dama" {% if filtro_tipo == 'shortterry_dama' %}selected{% endif %}> UD . Short Terry  </option>                                             
+                        <option value="shorttelamojada_dama" {% if filtro_tipo == 'shorttelamojada_dama' %}selected{% endif %}> UD . Short Tela Mojada  </option>                                             
+                        <option value="shortnovadama" {% if filtro_tipo == 'shortnovadama' %}selected{% endif %}> UD . Short Nova </option>    
+                        <option value="poloalgodonmangacorta_dama" {% if filtro_tipo == 'poloalgodonmangacorta_dama' %}selected{% endif %}> UD . Polo Algodon Manga Corta  </option>                                             
+                        <option value="poloalgodonmangalarga_dama" {% if filtro_tipo == 'poloalgodonmangalarga_dama' %}selected{% endif %}> UD . Polo Algodon Manga Larga  </option>                                             
+                        <option value="polocuellocamisero_dama" {% if filtro_tipo == 'polocuellocamisero_dama' %}selected{% endif %}> UD . Polo Cuello Camisero </option>    
+                        <option value="casacalicra_dama" {% if filtro_tipo == 'casacalicra_dama' %}selected{% endif %}> UD . Casaca Licra  </option>                                             
+                        <option value="casacacortaviento_dama" {% if filtro_tipo == 'casacacortaviento_dama' %}selected{% endif %}> UD . Casaca Cortaviento </option>      
+                        <option value="enterizo_dama" {% if filtro_tipo == 'enterizo_dama' %}selected{% endif %}> UD . Enterizo   </option>                                             
+                        <option value="bividi_dama" {% if filtro_tipo == 'bividi_dama' %}selected{% endif %}> UD . Bividi </option> 
+                        <option value="top_dama" {% if filtro_tipo == 'top_dama' %}selected{% endif %}> UD . Top </option>     
+                        <!--Conjunto NIÑO-->
+                        <option value="ConjuntoInterfil_Niño" {% if filtro_tipo == 'ConjuntoInterfil_Niño' %}selected{% endif %}> CNO . Interfil  </option>     
+                        <option value="ConjuntoNova_Niño" {% if filtro_tipo == 'ConjuntoNova_Niño' %}selected{% endif %}> CNO . Nova  </option>     
+                        <!--Conjunto NIÑA-->
+                        <option value="ConjuntoNova_Niña" {% if filtro_tipo == 'ConjuntoNova_Niña' %}selected{% endif %}> CNA . Nova </option>     
+                        <option value="ConjuntoLicra_Niña" {% if filtro_tipo == 'ConjuntoLicra_Niña' %}selected{% endif %}> CNA . Licra  </option>     
+
+                    </select>
+                    <button type="submit" class="btn btn-success mt-2">Filtrar Prendas</button>
+                </div>
+
+
+                <!-- Filtro por código -->
+                <div class="col-md-3 mb-2">
+                    <label for="filtro_codigo">Filtrar por código:</label>
+                    <input type="text" class="form-control" id="filtro_codigo" name="codigo" placeholder="Ingrese código" value="{{ filtro_codigo }}">
+                    <button type="submit" class="btn btn-info mt-2">Filtrar Código</button>
+                </div>
+                <!-- Filtro por color -->
+                <div class="col-md-3 mb-2">
+                    <label for="filtro_color">Filtrar por color:</label>
+                    <input type="text" class="form-control" id="filtro_color" name="color" placeholder="Ingrese color" value="{{ filtro_color }}">
+                    <button type="submit" class="btn btn-warning mt-2">Filtrar Color</button>
+                </div>
+
+                <!-- Filtro por diseño -->
+                <div class="col-md-3 mb-2">
+                    <label for="filtro_diseño">Filtrar por diseño:</label>
+                    <input type="text" class="form-control" id="filtro_diseño" name="diseño" placeholder="Ingrese diseño" value="{{ filtro_diseño }}">
+                    <button type="submit" class="btn btn-primary mt-2">Filtrar Diseño</button>
+                </div>
+
+                <!-- Filtro por talla -->
+                <div class="col-md-3 mb-2">
+                    <label for="filtro_diseño">Filtrar por talla:</label>
+                    <input type="text" class="form-control" id="filtro_talla" name="talla" placeholder="Ingrese talla" value="{{ filtro_talla }}">
+                    <button type="submit" class="btn btn-primary mt-2">Filtrar Talla</button>
+                </div>
+
+                <!-- Filtro por marca -->
+                <div class="col-md-3 mb-2">
+                    <label for="filtro_diseño">Filtrar por marca:</label>
+                    <input type="text" class="form-control" id="filtro_marca" name="marca" placeholder="Ingrese marca" value="{{ filtro_marca }}">
+                    <button type="submit" class="btn btn-primary mt-2">Filtrar Marca</button>
+                </div>
+            </div>
+
+            <!-- Botón para borrar filtros -->
+            <div class="text-center mt-3">
+                <a href="{% url 'listar_productos' %}" class="btn btn-danger">Borrar Filtros</a>
+            </div>
+        </form>
+
+        <!-- Conjuntos Licra Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'licra' %}
+        <h2 class="text-center">Conjuntos Licra Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for licra in licras %}
+                    <tr>
+                        <td>{{ licra.Codigo }}</td>
+                        <td>{{ licra.Talla }}</td>
+                        <td>{{ licra.Marca }}</td>
+                        <td>{{ licra.Modelo }}</td>
+                        <td>{{ licra.Diseño }}</td>
+                        <td>{{ licra.Color }}</td>
+                        <td>{{ licra.Precio }}</td>
+                        <td>{{ licra.S1 }}</td>
+                        <td>{{ licra.S2 }}</td>
+                        <td>{{ licra.S3 }}</td>
+                        <td>{{ licra.Almacen }}</td>
+                        <td>{{ licra.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Nova Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'nova' %}
+        <h2 class="text-center">Conjuntos Nova Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nova in novas %}
+                    <tr>
+                        <td>{{ nova.Codigo }}</td>
+                        <td>{{ nova.Talla }}</td>
+                        <td>{{ nova.Marca }}</td>
+                        <td>{{ nova.Modelo }}</td>
+                        <td>{{ nova.Diseño }}</td>
+                        <td>{{ nova.Color }}</td>
+                        <td>{{ nova.Precio }}</td>
+                        <td>{{ nova.S1 }}</td>
+                        <td>{{ nova.S2 }}</td>
+                        <td>{{ nova.S3 }}</td>
+                        <td>{{ nova.Almacen }}</td>
+                        <td>{{ nova.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Interfil Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'interfil' %}
+        <h2 class="text-center">Conjuntos Interfil Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for interfil in interfiles %}
+                    <tr>
+                        <td>{{ interfil.Codigo }}</td>
+                        <td>{{ interfil.Talla }}</td>
+                        <td>{{ interfil.Marca }}</td>
+                        <td>{{ interfil.Modelo }}</td>
+                        <td>{{ interfil.Diseño }}</td>
+                        <td>{{ interfil.Color }}</td>
+                        <td>{{ interfil.Precio }}</td>
+                        <td>{{ interfil.S1 }}</td>
+                        <td>{{ interfil.S2 }}</td>
+                        <td>{{ interfil.S3 }}</td>
+                        <td>{{ interfil.Almacen }}</td>
+                        <td>{{ interfil.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Franela Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'franela' %}
+        <h2 class="text-center">Conjuntos Franela Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for franela in franelas %}
+                    <tr>
+                        <td>{{ franela.Codigo }}</td>
+                        <td>{{ franela.Talla }}</td>
+                        <td>{{ franela.Marca }}</td>
+                        <td>{{ franela.Modelo }}</td>
+                        <td>{{ franela.Diseño }}</td>
+                        <td>{{ franela.Color }}</td>
+                        <td>{{ franela.Precio }}</td>
+                        <td>{{ franela.S1 }}</td>
+                        <td>{{ franela.S2 }}</td>
+                        <td>{{ franela.S3 }}</td>
+                        <td>{{ franela.Almacen }}</td>
+                        <td>{{ franela.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Elastic Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'elastic' %}
+        <h2 class="text-center">Conjuntos Elastic Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for elastic in elastics %}
+                    <tr>
+                        <td>{{ elastic.Codigo }}</td>
+                        <td>{{ elastic.Talla }}</td>
+                        <td>{{ elastic.Marca }}</td>
+                        <td>{{ elastic.Modelo }}</td>
+                        <td>{{ elastic.Diseño }}</td>
+                        <td>{{ elastic.Color }}</td>
+                        <td>{{ elastic.Precio }}</td>
+                        <td>{{ elastic.S1 }}</td>
+                        <td>{{ elastic.S2 }}</td>
+                        <td>{{ elastic.S3 }}</td>
+                        <td>{{ elastic.Almacen }}</td>
+                        <td>{{ elastic.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Plush Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'plush' %}
+        <h2 class="text-center">Conjuntos Plush Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plush in plushes %}
+                    <tr>
+                        <td>{{ plush.Codigo }}</td>
+                        <td>{{ plush.Talla }}</td>
+                        <td>{{ plush.Marca }}</td>
+                        <td>{{ plush.Modelo }}</td>
+                        <td>{{ plush.Diseño }}</td>
+                        <td>{{ plush.Color }}</td>
+                        <td>{{ plush.Precio }}</td>
+                        <td>{{ plush.S1 }}</td>
+                        <td>{{ plush.S2 }}</td>
+                        <td>{{ plush.S3 }}</td>
+                        <td>{{ plush.Almacen }}</td>
+                        <td>{{ plush.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Poliester Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'poliester' %}
+        <h2 class="text-center">Conjuntos Poliester Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for poliester in poliesters %}
+                    <tr>
+                        <td>{{ poliester.Codigo }}</td>
+                        <td>{{ poliester.Talla }}</td>
+                        <td>{{ poliester.Marca }}</td>
+                        <td>{{ poliester.Modelo }}</td>
+                        <td>{{ poliester.Diseño }}</td>
+                        <td>{{ poliester.Color }}</td>
+                        <td>{{ poliester.Precio }}</td>
+                        <td>{{ poliester.S1 }}</td>
+                        <td>{{ poliester.S2 }}</td>
+                        <td>{{ poliester.S3 }}</td>
+                        <td>{{ poliester.Almacen }}</td>
+                        <td>{{ poliester.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Tela Mojada Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'tela_mojada' %}
+        <h2 class="text-center">Conjuntos Tela Mojada Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tela_mojada in telas_mojadas %}
+                    <tr>
+                        <td>{{ tela_mojada.Codigo }}</td>
+                        <td>{{ tela_mojada.Talla }}</td>
+                        <td>{{ tela_mojada.Marca }}</td>
+                        <td>{{ tela_mojada.Modelo }}</td>
+                        <td>{{ tela_mojada.Diseño }}</td>
+                        <td>{{ tela_mojada.Color }}</td>
+                        <td>{{ tela_mojada.Precio }}</td>
+                        <td>{{ tela_mojada.S1 }}</td>
+                        <td>{{ tela_mojada.S2 }}</td>
+                        <td>{{ tela_mojada.S3 }}</td>
+                        <td>{{ tela_mojada.Almacen }}</td>
+                        <td>{{ tela_mojada.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Polifresh Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'polifresh' %}
+        <h2 class="text-center">Conjuntos Polifresh Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for polifresh in polifreshes %}
+                    <tr>
+                        <td>{{ polifresh.Codigo }}</td>
+                        <td>{{ polifresh.Talla }}</td>
+                        <td>{{ polifresh.Marca }}</td>
+                        <td>{{ polifresh.Modelo }}</td>
+                        <td>{{ polifresh.Diseño }}</td>
+                        <td>{{ polifresh.Color }}</td>
+                        <td>{{ polifresh.Precio }}</td>
+                        <td>{{ polifresh.S1 }}</td>
+                        <td>{{ polifresh.S2 }}</td>
+                        <td>{{ polifresh.S3 }}</td>
+                        <td>{{ polifresh.Almacen }}</td>
+                        <td>{{ polifresh.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Cortaviento Reversible Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'cortaviento_reversible' %}
+        <h2 class="text-center">Conjuntos Cortaviento Reversible Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cortaviento_reversible in cortavientos_reversibles %}
+                    <tr>
+                        <td>{{ cortaviento_reversible.Codigo }}</td>
+                        <td>{{ cortaviento_reversible.Talla }}</td>
+                        <td>{{ cortaviento_reversible.Marca }}</td>
+                        <td>{{ cortaviento_reversible.Modelo }}</td>
+                        <td>{{ cortaviento_reversible.Diseño }}</td>
+                        <td>{{ cortaviento_reversible.Color }}</td>
+                        <td>{{ cortaviento_reversible.Precio }}</td>
+                        <td>{{ cortaviento_reversible.S1 }}</td>
+                        <td>{{ cortaviento_reversible.S2 }}</td>
+                        <td>{{ cortaviento_reversible.S3 }}</td>
+                        <td>{{ cortaviento_reversible.Almacen }}</td>
+                        <td>{{ cortaviento_reversible.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Terry Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'terry' %}
+        <h2 class="text-center">Conjuntos Terry Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for terry in terrys %}
+                    <tr>
+                        <td>{{ terry.Codigo }}</td>
+                        <td>{{ terry.Talla }}</td>
+                        <td>{{ terry.Marca }}</td>
+                        <td>{{ terry.Modelo }}</td>
+                        <td>{{ terry.Diseño }}</td>
+                        <td>{{ terry.Color }}</td>
+                        <td>{{ terry.Precio }}</td>
+                        <td>{{ terry.S1 }}</td>
+                        <td>{{ terry.S2 }}</td>
+                        <td>{{ terry.S3 }}</td>
+                        <td>{{ terry.Almacen }}</td>
+                        <td>{{ terry.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Franela Plush Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'franela_plush' %}
+        <h2 class="text-center">Conjuntos Franela Plush Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for franela_plush in franela_plushes %}
+                    <tr>
+                        <td>{{ franela_plush.Codigo }}</td>
+                        <td>{{ franela_plush.Talla }}</td>
+                        <td>{{ franela_plush.Marca }}</td>
+                        <td>{{ franela_plush.Modelo }}</td>
+                        <td>{{ franela_plush.Diseño }}</td>
+                        <td>{{ franela_plush.Color }}</td>
+                        <td>{{ franela_plush.Precio }}</td>
+                        <td>{{ franela_plush.S1 }}</td>
+                        <td>{{ franela_plush.S2 }}</td>
+                        <td>{{ franela_plush.S3 }}</td>
+                        <td>{{ franela_plush.Almacen }}</td>
+                        <td>{{ franela_plush.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Bosse Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'bosse' %}
+        <h2 class="text-center">Conjuntos Bosse Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bosse in bosses %}
+                    <tr>
+                        <td>{{ bosse.Codigo }}</td>
+                        <td>{{ bosse.Talla }}</td>
+                        <td>{{ bosse.Marca }}</td>
+                        <td>{{ bosse.Modelo }}</td>
+                        <td>{{ bosse.Diseño }}</td>
+                        <td>{{ bosse.Color }}</td>
+                        <td>{{ bosse.Precio }}</td>
+                        <td>{{ bosse.S1 }}</td>
+                        <td>{{ bosse.S2 }}</td>
+                        <td>{{ bosse.S3 }}</td>
+                        <td>{{ bosse.Almacen }}</td>
+                        <td>{{ bosse.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Loma Dama -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'loma' %}
+        <h2 class="text-center">Conjuntos Loma Dama</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loma in lomas %}
+                    <tr>
+                        <td>{{ loma.Codigo }}</td>
+                        <td>{{ loma.Talla }}</td>
+                        <td>{{ loma.Marca }}</td>
+                        <td>{{ loma.Modelo }}</td>
+                        <td>{{ loma.Diseño }}</td>
+                        <td>{{ loma.Color }}</td>
+                        <td>{{ loma.Precio }}</td>
+                        <td>{{ loma.S1 }}</td>
+                        <td>{{ loma.S2 }}</td>
+                        <td>{{ loma.S3 }}</td>
+                        <td>{{ loma.Almacen }}</td>
+                        <td>{{ loma.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Reversible Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'cortaviento_reversible_varon' %}
+        <h2 class="text-center">Conjuntos Reversible Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cortaviento_reversible_varon in cortavientos_reversibles_varones %}
+                    <tr>
+                        <td>{{ cortaviento_reversible_varon.Codigo }}</td>
+                        <td>{{ cortaviento_reversible_varon.Talla }}</td>
+                        <td>{{ cortaviento_reversible_varon.Marca }}</td>
+                        <td>{{ cortaviento_reversible_varon.Modelo }}</td>
+                        <td>{{ cortaviento_reversible_varon.Diseño }}</td>
+                        <td>{{ cortaviento_reversible_varon.Color }}</td>
+                        <td>{{ cortaviento_reversible_varon.Precio }}</td>
+                        <td>{{ cortaviento_reversible_varon.S1 }}</td>
+                        <td>{{ cortaviento_reversible_varon.S2 }}</td>
+                        <td>{{ cortaviento_reversible_varon.S3 }}</td>
+                        <td>{{ cortaviento_reversible_varon.Almacen }}</td>
+                        <td>{{ cortaviento_reversible_varon.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Conjuntos Cortaviento Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'cortaviento_varon' %}
+        <h2 class="text-center">Conjuntos Cortavientos Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cortavientos_varon in cortavientos_varones %}
+                    <tr>
+                        <td>{{ cortavientos_varon.Codigo }}</td>
+                        <td>{{ cortavientos_varon.Talla }}</td>
+                        <td>{{ cortavientos_varon.Marca }}</td>
+                        <td>{{ cortavientos_varon.Modelo }}</td>
+                        <td>{{ cortavientos_varon.Diseño }}</td>
+                        <td>{{ cortavientos_varon.Color }}</td>
+                        <td>{{ cortavientos_varon.Precio }}</td>
+                        <td>{{ cortavientos_varon.S1 }}</td>
+                        <td>{{ cortavientos_varon.S2 }}</td>
+                        <td>{{ cortavientos_varon.S3 }}</td>
+                        <td>{{ cortavientos_varon.Almacen }}</td>
+                        <td>{{ cortavientos_varon.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos Elastic Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'elastic_varon' %}
+        <h2 class="text-center">Conjuntos Elasic Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for elastic_varones in elastics_varon %}
+                    <tr>
+                        <td>{{ elastic_varones.Codigo }}</td>
+                        <td>{{ elastic_varones.Talla }}</td>
+                        <td>{{ elastic_varones.Marca }}</td>
+                        <td>{{ elastic_varones.Modelo }}</td>
+                        <td>{{ elastic_varones.Diseño }}</td>
+                        <td>{{ elastic_varones.Color }}</td>
+                        <td>{{ elastic_varones.Precio }}</td>
+                        <td>{{ elastic_varones.S1 }}</td>
+                        <td>{{ elastic_varones.S2 }}</td>
+                        <td>{{ elastic_varones.S3 }}</td>
+                        <td>{{ elastic_varones.Almacen }}</td>
+                        <td>{{ elastic_varones.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos Franela Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'franela_varon' %}
+        <h2 class="text-center">Conjuntos Franela Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for franela_varones in franelas_varon %}
+                    <tr>
+                        <td>{{ franela_varones.Codigo }}</td>
+                        <td>{{ franela_varones.Talla }}</td>
+                        <td>{{ franela_varones.Marca }}</td>
+                        <td>{{ franela_varones.Modelo }}</td>
+                        <td>{{ franela_varones.Diseño }}</td>
+                        <td>{{ franela_varones.Color }}</td>
+                        <td>{{ franela_varones.Precio }}</td>
+                        <td>{{ franela_varones.S1 }}</td>
+                        <td>{{ franela_varones.S2 }}</td>
+                        <td>{{ franela_varones.S3 }}</td>
+                        <td>{{ franela_varones.Almacen }}</td>
+                        <td>{{ franela_varones.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos Interfil Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'interfil_varon' %}
+        <h2 class="text-center">Conjuntos Interfil Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for interfiles_varones in interfiles_varon %}
+                    <tr>
+                        <td>{{ interfiles_varones.Codigo }}</td>
+                        <td>{{ interfiles_varones.Talla }}</td>
+                        <td>{{ interfiles_varones.Marca }}</td>
+                        <td>{{ interfiles_varones.Modelo }}</td>
+                        <td>{{ interfiles_varones.Diseño }}</td>
+                        <td>{{ interfiles_varones.Color }}</td>
+                        <td>{{ interfiles_varones.Precio }}</td>
+                        <td>{{ interfiles_varones.S1 }}</td>
+                        <td>{{ interfiles_varones.S2 }}</td>
+                        <td>{{ interfiles_varones.S3 }}</td>
+                        <td>{{ interfiles_varones.Almacen }}</td>
+                        <td>{{ interfiles_varones.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos bosse Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'bosse_varon' %}
+        <h2 class="text-center">Conjuntos Bosse Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bosse_varones in bosses_varon %}
+                    <tr>
+                        <td>{{ bosse_varones.Codigo }}</td>
+                        <td>{{ bosse_varones.Talla }}</td>
+                        <td>{{ bosse_varones.Marca }}</td>
+                        <td>{{ bosse_varones.Modelo }}</td>
+                        <td>{{ bosse_varones.Diseño }}</td>
+                        <td>{{ bosse_varones.Color }}</td>
+                        <td>{{ bosse_varones.Precio }}</td>
+                        <td>{{ bosse_varones.S1 }}</td>
+                        <td>{{ bosse_varones.S2 }}</td>
+                        <td>{{ bosse_varones.S3 }}</td>
+                        <td>{{ bosse_varones.Almacen }}</td>
+                        <td>{{ bosse_varones.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos nova Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'nova_varon' %}
+        <h2 class="text-center">Conjuntos Nova Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nova_varones in novas_varon %}
+                    <tr>
+                        <td>{{ nova_varones.Codigo }}</td>
+                        <td>{{ nova_varones.Talla }}</td>
+                        <td>{{ nova_varones.Marca }}</td>
+                        <td>{{ nova_varones.Modelo }}</td>
+                        <td>{{ nova_varones.Diseño }}</td>
+                        <td>{{ nova_varones.Color }}</td>
+                        <td>{{ nova_varones.Precio }}</td>
+                        <td>{{ nova_varones.S1 }}</td>
+                        <td>{{ nova_varones.S2 }}</td>
+                        <td>{{ nova_varones.S3 }}</td>
+                        <td>{{ nova_varones.Almacen }}</td>
+                        <td>{{ nova_varones.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos franela plush Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'franelaplush_varon' %}
+        <h2 class="text-center">Conjuntos Franela Plush Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for franelaplushe_varon in franelaplushes_varon %}
+                    <tr>
+                        <td>{{ franelaplushe_varon.Codigo }}</td>
+                        <td>{{ franelaplushe_varon.Talla }}</td>
+                        <td>{{ franelaplushe_varon.Marca }}</td>
+                        <td>{{ franelaplushe_varon.Modelo }}</td>
+                        <td>{{ franelaplushe_varon.Diseño }}</td>
+                        <td>{{ franelaplushe_varon.Color }}</td>
+                        <td>{{ franelaplushe_varon.Precio }}</td>
+                        <td>{{ franelaplushe_varon.S1 }}</td>
+                        <td>{{ franelaplushe_varon.S2 }}</td>
+                        <td>{{ franelaplushe_varon.S3 }}</td>
+                        <td>{{ franelaplushe_varon.Almacen }}</td>
+                        <td>{{ franelaplushe_varon.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos Poliester Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'poliester_varon' %}
+        <h2 class="text-center">Conjuntos Poliester Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for poliester_varon in poliesters_varon %}
+                    <tr>
+                        <td>{{ poliester_varon.Codigo }}</td>
+                        <td>{{ poliester_varon.Talla }}</td>
+                        <td>{{ poliester_varon.Marca }}</td>
+                        <td>{{ poliester_varon.Modelo }}</td>
+                        <td>{{ poliester_varon.Diseño }}</td>
+                        <td>{{ poliester_varon.Color }}</td>
+                        <td>{{ poliester_varon.Precio }}</td>
+                        <td>{{ poliester_varon.S1 }}</td>
+                        <td>{{ poliester_varon.S2 }}</td>
+                        <td>{{ poliester_varon.S3 }}</td>
+                        <td>{{ poliester_varon.Almacen }}</td>
+                        <td>{{ poliester_varon.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        <!-- Conjuntos Terry Varon -->
+        {% if filtro_tipo == 'todos' or filtro_tipo == 'terry_varon' %}
+        <h2 class="text-center">Conjuntos Terry  Varon</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Diseño</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>Almacen</th>
+                        <th>Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for terry_varon in terrys_varon %}
+                    <tr>
+                        <td>{{ terry_varon.Codigo }}</td>
+                        <td>{{ terry_varon.Talla }}</td>
+                        <td>{{ terry_varon.Marca }}</td>
+                        <td>{{ terry_varon.Modelo }}</td>
+                        <td>{{ terry_varon.Diseño }}</td>
+                        <td>{{ terry_varon.Color }}</td>
+                        <td>{{ terry_varon.Precio }}</td>
+                        <td>{{ terry_varon.S1 }}</td>
+                        <td>{{ terry_varon.S2 }}</td>
+                        <td>{{ terry_varon.S3 }}</td>
+                        <td>{{ terry_varon.Almacen }}</td>
+                        <td>{{ terry_varon.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+                <!-- Conjuntos Terry Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'telamojada_varon' %}
+                <h2 class="text-center">Conjuntos Tela Mojada  Varon</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for telamojada_varon in telamojadas_varon %}
+                            <tr>
+                                <td>{{ telamojada_varon.Codigo }}</td>
+                                <td>{{ telamojada_varon.Talla }}</td>
+                                <td>{{ telamojada_varon.Marca }}</td>
+                                <td>{{ telamojada_varon.Modelo }}</td>
+                                <td>{{ telamojada_varon.Diseño }}</td>
+                                <td>{{ telamojada_varon.Color }}</td>
+                                <td>{{ telamojada_varon.Precio }}</td>
+                                <td>{{ telamojada_varon.S1 }}</td>
+                                <td>{{ telamojada_varon.S2 }}</td>
+                                <td>{{ telamojada_varon.S3 }}</td>
+                                <td>{{ telamojada_varon.Almacen }}</td>
+                                <td>{{ telamojada_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Conjuntos polifresh Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'polifresh_varon' %}
+                <h2 class="text-center">Conjuntos Polifresh  Varon</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for polifresh_varon in polifreshes_varon %}
+                            <tr>
+                                <td>{{ polifresh_varon.Codigo }}</td>
+                                <td>{{ polifresh_varon.Talla }}</td>
+                                <td>{{ polifresh_varon.Marca }}</td>
+                                <td>{{ polifresh_varon.Modelo }}</td>
+                                <td>{{ polifresh_varon.Diseño }}</td>
+                                <td>{{ polifresh_varon.Color }}</td>
+                                <td>{{ polifresh_varon.Precio }}</td>
+                                <td>{{ polifresh_varon.S1 }}</td>
+                                <td>{{ polifresh_varon.S2 }}</td>
+                                <td>{{ polifresh_varon.S3 }}</td>
+                                <td>{{ polifresh_varon.Almacen }}</td>
+                                <td>{{ polifresh_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Franela BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonfranelabotarecta_varon' %}
+                <h2 class="text-center">Unidades Pantalon Franela Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonfranelabotarecta_varon in pantalonfranelabotarectas_varon %}
+                            <tr>
+                                <td>{{ pantalonfranelabotarecta_varon.Codigo }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Talla }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Marca }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Modelo }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Diseño }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Color }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Precio }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.S1 }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.S2 }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.S3 }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.Almacen }}</td>
+                                <td>{{ pantalonfranelabotarecta_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Nova BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonnovabotarecta_varon' %}
+                <h2 class="text-center">Unidades Pantalon Nova Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonnovabotarecta_varon in pantalonnovabotarectas_varon %}
+                            <tr>
+                                <td>{{ pantalonnovabotarecta_varon.Codigo }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Talla }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Marca }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Modelo }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Diseño }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Color }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Precio }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.S1 }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.S2 }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.S3 }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.Almacen }}</td>
+                                <td>{{ pantalonnovabotarecta_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Interfil BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantaloninterfilbotarecta_varon' %}
+                <h2 class="text-center">Unidades Pantalon Interfil Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantaloninterfilbotarecta_varon in pantaloninterfilbotarectas_varon %}
+                            <tr>
+                                <td>{{ pantaloninterfilbotarecta_varon.Codigo }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Talla }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Marca }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Modelo }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Diseño }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Color }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Precio }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.S1 }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.S2 }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.S3 }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.Almacen }}</td>
+                                <td>{{ pantaloninterfilbotarecta_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Terry BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonterrybotarecta_varon' %}
+                <h2 class="text-center">Unidades Pantalon Terry Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonterrybotarecta_varon in pantalonterrybotarectas_varon %}
+                            <tr>
+                                <td>{{ pantalonterrybotarecta_varon.Codigo }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Talla }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Marca }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Modelo }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Diseño }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Color }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Precio }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.S1 }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.S2 }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.S3 }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.Almacen }}</td>
+                                <td>{{ pantalonterrybotarecta_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+                <!-- Pantalon BOSSE BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonbossebotarecta_varon' %}
+                <h2 class="text-center">Unidades Pantalon Bosse Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonbossebotarecta_varon in pantalonbossebotarectas_varon %}
+                            <tr>
+                                <td>{{ pantalonbossebotarecta_varon.Codigo }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Talla }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Marca }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Modelo }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Diseño }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Color }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Precio }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.S1 }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.S2 }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.S3 }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.Almacen }}</td>
+                                <td>{{ pantalonbossebotarecta_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Cortaviento BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantaloncortavientobotarecta_varon' %}
+                <h2 class="text-center">Unidades Pantalon Cortaviento Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantaloncortavientobotarecta_varon in pantaloncortavientobotarectas_varon %}
+                            <tr>
+                                <td>{{ pantaloncortavientobotarecta_varon.Codigo }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Talla }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Marca }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Modelo }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Diseño }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Color }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Precio }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.S1 }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.S2 }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.S3 }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.Almacen }}</td>
+                                <td>{{ pantaloncortavientobotarecta_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Jogger terry BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggerterry_varon' %}
+                <h2 class="text-center">Unidades Jogger Terry Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggerterry_varon in joggerterrys_varon %}
+                            <tr>
+                                <td>{{ joggerterry_varon.Codigo }}</td>
+                                <td>{{ joggerterry_varon.Talla }}</td>
+                                <td>{{ joggerterry_varon.Marca }}</td>
+                                <td>{{ joggerterry_varon.Modelo }}</td>
+                                <td>{{ joggerterry_varon.Diseño }}</td>
+                                <td>{{ joggerterry_varon.Color }}</td>
+                                <td>{{ joggerterry_varon.Precio }}</td>
+                                <td>{{ joggerterry_varon.S1 }}</td>
+                                <td>{{ joggerterry_varon.S2 }}</td>
+                                <td>{{ joggerterry_varon.S3 }}</td>
+                                <td>{{ joggerterry_varon.Almacen }}</td>
+                                <td>{{ joggerterry_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Jogger franela BR Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggerfranela_varon' %}
+                <h2 class="text-center">Unidades Jogger Franela Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggerfranela_varon in joggerfranelas_varon %}
+                            <tr>
+                                <td>{{ joggerfranela_varon.Codigo }}</td>
+                                <td>{{ joggerfranela_varon.Talla }}</td>
+                                <td>{{ joggerfranela_varon.Marca }}</td>
+                                <td>{{ joggerfranela_varon.Modelo }}</td>
+                                <td>{{ joggerfranela_varon.Diseño }}</td>
+                                <td>{{ joggerfranela_varon.Color }}</td>
+                                <td>{{ joggerfranela_varon.Precio }}</td>
+                                <td>{{ joggerfranela_varon.S1 }}</td>
+                                <td>{{ joggerfranela_varon.S2 }}</td>
+                                <td>{{ joggerfranela_varon.S3 }}</td>
+                                <td>{{ joggerfranela_varon.Almacen }}</td>
+                                <td>{{ joggerfranela_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon Pantaloneta lICRA Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonetalicra_varon' %}
+                <h2 class="text-center">Unidades Pantaloneta Licra Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonetalicra_varon in pantalonetalicras_varon %}
+                            <tr>
+                                <td>{{ pantalonetalicra_varon.Codigo }}</td>
+                                <td>{{ pantalonetalicra_varon.Talla }}</td>
+                                <td>{{ pantalonetalicra_varon.Marca }}</td>
+                                <td>{{ pantalonetalicra_varon.Modelo }}</td>
+                                <td>{{ pantalonetalicra_varon.Diseño }}</td>
+                                <td>{{ pantalonetalicra_varon.Color }}</td>
+                                <td>{{ pantalonetalicra_varon.Precio }}</td>
+                                <td>{{ pantalonetalicra_varon.S1 }}</td>
+                                <td>{{ pantalonetalicra_varon.S2 }}</td>
+                                <td>{{ pantalonetalicra_varon.S3 }}</td>
+                                <td>{{ pantalonetalicra_varon.Almacen }}</td>
+                                <td>{{ pantalonetalicra_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                <!-- Pantalon casasca cortaviento Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'casacacortaviento_varon' %}
+                <h2 class="text-center">Unidades Casacas cortaviento Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for casacacortaviento_varon in casacascortavientos_varon %}
+                            <tr>
+                                <td>{{ casacacortaviento_varon.Codigo }}</td>
+                                <td>{{ casacacortaviento_varon.Talla }}</td>
+                                <td>{{ casacacortaviento_varon.Marca }}</td>
+                                <td>{{ casacacortaviento_varon.Modelo }}</td>
+                                <td>{{ casacacortaviento_varon.Diseño }}</td>
+                                <td>{{ casacacortaviento_varon.Color }}</td>
+                                <td>{{ casacacortaviento_varon.Precio }}</td>
+                                <td>{{ casacacortaviento_varon.S1 }}</td>
+                                <td>{{ casacacortaviento_varon.S2 }}</td>
+                                <td>{{ casacacortaviento_varon.S3 }}</td>
+                                <td>{{ casacacortaviento_varon.Almacen }}</td>
+                                <td>{{ casacacortaviento_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+                <!-- Pantalon Bividi Licra Varon -->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'bividilicra_varon' %}
+                <h2 class="text-center">Unidades Bividi Licra Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bividilicra_varon in bividislicras_varon %}
+                            <tr>
+                                <td>{{ bividilicra_varon.Codigo }}</td>
+                                <td>{{ bividilicra_varon.Talla }}</td>
+                                <td>{{ bividilicra_varon.Marca }}</td>
+                                <td>{{ bividilicra_varon.Modelo }}</td>
+                                <td>{{ bividilicra_varon.Diseño }}</td>
+                                <td>{{ bividilicra_varon.Color }}</td>
+                                <td>{{ bividilicra_varon.Precio }}</td>
+                                <td>{{ bividilicra_varon.S1 }}</td>
+                                <td>{{ bividilicra_varon.S2 }}</td>
+                                <td>{{ bividilicra_varon.S3 }}</td>
+                                <td>{{ bividilicra_varon.Almacen }}</td>
+                                <td>{{ bividilicra_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pololicra_varon' %}
+                <h2 class="text-center">Unidades Polo Licra Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pololicra_varon in poloslicras_varon %}
+                            <tr>
+                                <td>{{ pololicra_varon.Codigo }}</td>
+                                <td>{{ pololicra_varon.Talla }}</td>
+                                <td>{{ pololicra_varon.Marca }}</td>
+                                <td>{{ pololicra_varon.Modelo }}</td>
+                                <td>{{ pololicra_varon.Diseño }}</td>
+                                <td>{{ pololicra_varon.Color }}</td>
+                                <td>{{ pololicra_varon.Precio }}</td>
+                                <td>{{ pololicra_varon.S1 }}</td>
+                                <td>{{ pololicra_varon.S2 }}</td>
+                                <td>{{ pololicra_varon.S3 }}</td>
+                                <td>{{ pololicra_varon.Almacen }}</td>
+                                <td>{{ pololicra_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'poloalgodon_varon' %}
+                <h2 class="text-center">Unidades Polo Algodon Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for poloalgodon_varon in polosalgodones_varon %}
+                            <tr>
+                                <td>{{ poloalgodon_varon.Codigo }}</td>
+                                <td>{{ poloalgodon_varon.Talla }}</td>
+                                <td>{{ poloalgodon_varon.Marca }}</td>
+                                <td>{{ poloalgodon_varon.Modelo }}</td>
+                                <td>{{ poloalgodon_varon.Diseño }}</td>
+                                <td>{{ poloalgodon_varon.Color }}</td>
+                                <td>{{ poloalgodon_varon.Precio }}</td>
+                                <td>{{ poloalgodon_varon.S1 }}</td>
+                                <td>{{ poloalgodon_varon.S2 }}</td>
+                                <td>{{ poloalgodon_varon.S3 }}</td>
+                                <td>{{ poloalgodon_varon.Almacen }}</td>
+                                <td>{{ poloalgodon_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'poloversize_varon' %}
+                <h2 class="text-center">Unidades Polo Oversize Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for polooversize_varon in poloversizes_varon %}
+                            <tr>
+                                <td>{{ polooversize_varon.Codigo }}</td>
+                                <td>{{ polooversize_varon.Talla }}</td>
+                                <td>{{ polooversize_varon.Marca }}</td>
+                                <td>{{ polooversize_varon.Modelo }}</td>
+                                <td>{{ polooversize_varon.Diseño }}</td>
+                                <td>{{ polooversize_varon.Color }}</td>
+                                <td>{{ polooversize_varon.Precio }}</td>
+                                <td>{{ polooversize_varon.S1 }}</td>
+                                <td>{{ polooversize_varon.S2 }}</td>
+                                <td>{{ polooversize_varon.S3 }}</td>
+                                <td>{{ polooversize_varon.Almacen }}</td>
+                                <td>{{ polooversize_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'polocompresor_varon' %}
+                <h2 class="text-center">Unidades Polo Compresor Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for polocompresor_varon in poloscompresor_varon %}
+                            <tr>
+                                <td>{{ polocompresor_varon.Codigo }}</td>
+                                <td>{{ polocompresor_varon.Talla }}</td>
+                                <td>{{ polocompresor_varon.Marca }}</td>
+                                <td>{{ polocompresor_varon.Modelo }}</td>
+                                <td>{{ polocompresor_varon.Diseño }}</td>
+                                <td>{{ polocompresor_varon.Color }}</td>
+                                <td>{{ polocompresor_varon.Precio }}</td>
+                                <td>{{ polocompresor_varon.S1 }}</td>
+                                <td>{{ polocompresor_varon.S2 }}</td>
+                                <td>{{ polocompresor_varon.S3 }}</td>
+                                <td>{{ polocompresor_varon.Almacen }}</td>
+                                <td>{{ polocompresor_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+<!---------------------------------------------------------------------->
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shortnova_varon' %}
+                <h2 class="text-center">Unidades Short Nova Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shortnova_varon in shortnovas_varon %}
+                            <tr>
+                                <td>{{ shortnova_varon.Codigo }}</td>
+                                <td>{{ shortnova_varon.Talla }}</td>
+                                <td>{{ shortnova_varon.Marca }}</td>
+                                <td>{{ shortnova_varon.Modelo }}</td>
+                                <td>{{ shortnova_varon.Diseño }}</td>
+                                <td>{{ shortnova_varon.Color }}</td>
+                                <td>{{ shortnova_varon.Precio }}</td>
+                                <td>{{ shortnova_varon.S1 }}</td>
+                                <td>{{ shortnova_varon.S2 }}</td>
+                                <td>{{ shortnova_varon.S3 }}</td>
+                                <td>{{ shortnova_varon.Almacen }}</td>
+                                <td>{{ shortnova_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shorttelamojada_varon' %}
+                <h2 class="text-center">Unidades Short Tela Mojada Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shorttelamojada_varon in shorttelamojadas_varon %}
+                            <tr>
+                                <td>{{ shorttelamojada_varon.Codigo }}</td>
+                                <td>{{ shorttelamojada_varon.Talla }}</td>
+                                <td>{{ shorttelamojada_varon.Marca }}</td>
+                                <td>{{ shorttelamojada_varon.Modelo }}</td>
+                                <td>{{ shorttelamojada_varon.Diseño }}</td>
+                                <td>{{ shorttelamojada_varon.Color }}</td>
+                                <td>{{ shorttelamojada_varon.Precio }}</td>
+                                <td>{{ shorttelamojada_varon.S1 }}</td>
+                                <td>{{ shorttelamojada_varon.S2 }}</td>
+                                <td>{{ shorttelamojada_varon.S3 }}</td>
+                                <td>{{ shorttelamojada_varon.Almacen }}</td>
+                                <td>{{ shorttelamojada_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shortelastic_varon' %}
+                <h2 class="text-center">Unidades Short Elastic Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shortelastic_varon in shortelastics_varon %}
+                            <tr>
+                                <td>{{ shortelastic_varon.Codigo }}</td>
+                                <td>{{ shortelastic_varon.Talla }}</td>
+                                <td>{{ shortelastic_varon.Marca }}</td>
+                                <td>{{ shortelastic_varon.Modelo }}</td>
+                                <td>{{ shortelastic_varon.Diseño }}</td>
+                                <td>{{ shortelastic_varon.Color }}</td>
+                                <td>{{ shortelastic_varon.Precio }}</td>
+                                <td>{{ shortelastic_varon.S1 }}</td>
+                                <td>{{ shortelastic_varon.S2 }}</td>
+                                <td>{{ shortelastic_varon.S3 }}</td>
+                                <td>{{ shortelastic_varon.Almacen }}</td>
+                                <td>{{ shortelastic_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shortterry_varon' %}
+                <h2 class="text-center">Unidades Short Terry Varón  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shortterry_varon in shortterrys_varon %}
+                            <tr>
+                                <td>{{ shortterry_varon.Codigo }}</td>
+                                <td>{{ shortterry_varon.Talla }}</td>
+                                <td>{{ shortterry_varon.Marca }}</td>
+                                <td>{{ shortterry_varon.Modelo }}</td>
+                                <td>{{ shortterry_varon.Diseño }}</td>
+                                <td>{{ shortterry_varon.Color }}</td>
+                                <td>{{ shortterry_varon.Precio }}</td>
+                                <td>{{ shortterry_varon.S1 }}</td>
+                                <td>{{ shortterry_varon.S2 }}</td>
+                                <td>{{ shortterry_varon.S3 }}</td>
+                                <td>{{ shortterry_varon.Almacen }}</td>
+                                <td>{{ shortterry_varon.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonbotarectanova_dama' %}
+                <h2 class="text-center">Unidades Pantalon Nova Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonnova_dama in pantalonesbotarectanova_dama %}
+                            <tr>
+                                <td>{{ pantalonnova_dama.Codigo }}</td>
+                                <td>{{ pantalonnova_dama.Talla }}</td>
+                                <td>{{ pantalonnova_dama.Marca }}</td>
+                                <td>{{ pantalonnova_dama.Modelo }}</td>
+                                <td>{{ pantalonnova_dama.Diseño }}</td>
+                                <td>{{ pantalonnova_dama.Color }}</td>
+                                <td>{{ pantalonnova_dama.Precio }}</td>
+                                <td>{{ pantalonnova_dama.S1 }}</td>
+                                <td>{{ pantalonnova_dama.S2 }}</td>
+                                <td>{{ pantalonnova_dama.S3 }}</td>
+                                <td>{{ pantalonnova_dama.Almacen }}</td>
+                                <td>{{ pantalonnova_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonetalicra_dama' %}
+                <h2 class="text-center">Unidades Pantaloneta licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonetalicra_dama in pantalonetaslicra_dama %}
+                            <tr>
+                                <td>{{ pantalonetalicra_dama.Codigo }}</td>
+                                <td>{{ pantalonetalicra_dama.Talla }}</td>
+                                <td>{{ pantalonetalicra_dama.Marca }}</td>
+                                <td>{{ pantalonetalicra_dama.Modelo }}</td>
+                                <td>{{ pantalonetalicra_dama.Diseño }}</td>
+                                <td>{{ pantalonetalicra_dama.Color }}</td>
+                                <td>{{ pantalonetalicra_dama.Precio }}</td>
+                                <td>{{ pantalonetalicra_dama.S1 }}</td>
+                                <td>{{ pantalonetalicra_dama.S2 }}</td>
+                                <td>{{ pantalonetalicra_dama.S3 }}</td>
+                                <td>{{ pantalonetalicra_dama.Almacen }}</td>
+                                <td>{{ pantalonetalicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggercargo_dama' %}
+                <h2 class="text-center">Unidades Jogger Cargo Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggercargo_dama in joggercargos_dama %}
+                            <tr>
+                                <td>{{ joggercargo_dama.Codigo }}</td>
+                                <td>{{ joggercargo_dama.Talla }}</td>
+                                <td>{{ joggercargo_dama.Marca }}</td>
+                                <td>{{ joggercargo_dama.Modelo }}</td>
+                                <td>{{ joggercargo_dama.Diseño }}</td>
+                                <td>{{ joggercargo_dama.Color }}</td>
+                                <td>{{ joggercargo_dama.Precio }}</td>
+                                <td>{{ joggercargo_dama.S1 }}</td>
+                                <td>{{ joggercargo_dama.S2 }}</td>
+                                <td>{{ joggercargo_dama.S3 }}</td>
+                                <td>{{ joggercargo_dama.Almacen }}</td>
+                                <td>{{ joggercargo_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantaloninterfil_dama' %}
+                <h2 class="text-center">Unidades Pantalon Interfil Dama Bota Recta  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantaloninterfil_dama in pantaloninterfils_dama %}
+                            <tr>
+                                <td>{{ pantaloninterfil_dama.Codigo }}</td>
+                                <td>{{ pantaloninterfil_dama.Talla }}</td>
+                                <td>{{ pantaloninterfil_dama.Marca }}</td>
+                                <td>{{ pantaloninterfil_dama.Modelo }}</td>
+                                <td>{{ pantaloninterfil_dama.Diseño }}</td>
+                                <td>{{ pantaloninterfil_dama.Color }}</td>
+                                <td>{{ pantaloninterfil_dama.Precio }}</td>
+                                <td>{{ pantaloninterfil_dama.S1 }}</td>
+                                <td>{{ pantaloninterfil_dama.S2 }}</td>
+                                <td>{{ pantaloninterfil_dama.S3 }}</td>
+                                <td>{{ pantaloninterfil_dama.Almacen }}</td>
+                                <td>{{ pantaloninterfil_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonterry_dama' %}
+                <h2 class="text-center">Unidades Pantalon Terry Dama Bota Recta  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonterry_dama in pantalonterrys_dama %}
+                            <tr>
+                                <td>{{ pantalonterry_dama.Codigo }}</td>
+                                <td>{{ pantalonterry_dama.Talla }}</td>
+                                <td>{{ pantalonterry_dama.Marca }}</td>
+                                <td>{{ pantalonterry_dama.Modelo }}</td>
+                                <td>{{ pantalonterry_dama.Diseño }}</td>
+                                <td>{{ pantalonterry_dama.Color }}</td>
+                                <td>{{ pantalonterry_dama.Precio }}</td>
+                                <td>{{ pantalonterry_dama.S1 }}</td>
+                                <td>{{ pantalonterry_dama.S2 }}</td>
+                                <td>{{ pantalonterry_dama.S3 }}</td>
+                                <td>{{ pantalonterry_dama.Almacen }}</td>
+                                <td>{{ pantalonterry_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonfranela_dama' %}
+                <h2 class="text-center">Unidades Pantalon Franela Dama Bota Recta  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonfranela_dama in pantalonfranelas_dama %}
+                            <tr>
+                                <td>{{ pantalonfranela_dama.Codigo }}</td>
+                                <td>{{ pantalonfranela_dama.Talla }}</td>
+                                <td>{{ pantalonfranela_dama.Marca }}</td>
+                                <td>{{ pantalonfranela_dama.Modelo }}</td>
+                                <td>{{ pantalonfranela_dama.Diseño }}</td>
+                                <td>{{ pantalonfranela_dama.Color }}</td>
+                                <td>{{ pantalonfranela_dama.Precio }}</td>
+                                <td>{{ pantalonfranela_dama.S1 }}</td>
+                                <td>{{ pantalonfranela_dama.S2 }}</td>
+                                <td>{{ pantalonfranela_dama.S3 }}</td>
+                                <td>{{ pantalonfranela_dama.Almacen }}</td>
+                                <td>{{ pantalonfranela_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonlicrabotarecta_dama' %}
+                <h2 class="text-center">Unidades Pantaloneta Licra Dama Bota Recta  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonlicrabotarecta_dama in pantalonlicrabotarectas_dama %}
+                            <tr>
+                                <td>{{ pantalonlicrabotarecta_dama.Codigo }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Talla }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Marca }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Modelo }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Diseño }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Color }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Precio }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.S1 }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.S2 }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.S3 }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.Almacen }}</td>
+                                <td>{{ pantalonlicrabotarecta_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonloma_dama' %}
+                <h2 class="text-center">Unidades Pantaloneta Loma Dama Bota Recta  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonloma_dama in pantalonlomas_dama %}
+                            <tr>
+                                <td>{{ pantalonloma_dama.Codigo }}</td>
+                                <td>{{ pantalonloma_dama.Talla }}</td>
+                                <td>{{ pantalonloma_dama.Marca }}</td>
+                                <td>{{ pantalonloma_dama.Modelo }}</td>
+                                <td>{{ pantalonloma_dama.Diseño }}</td>
+                                <td>{{ pantalonloma_dama.Color }}</td>
+                                <td>{{ pantalonloma_dama.Precio }}</td>
+                                <td>{{ pantalonloma_dama.S1 }}</td>
+                                <td>{{ pantalonloma_dama.S2 }}</td>
+                                <td>{{ pantalonloma_dama.S3 }}</td>
+                                <td>{{ pantalonloma_dama.Almacen }}</td>
+                                <td>{{ pantalonloma_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonpalazo_dama' %}
+                <h2 class="text-center">Unidades Pantaloneta Palazo Dama Bota Recta  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonpalazo_dama in pantalonpalazosdama %}
+                            <tr>
+                                <td>{{ pantalonpalazo_dama.Codigo }}</td>
+                                <td>{{ pantalonpalazo_dama.Talla }}</td>
+                                <td>{{ pantalonpalazo_dama.Marca }}</td>
+                                <td>{{ pantalonpalazo_dama.Modelo }}</td>
+                                <td>{{ pantalonpalazo_dama.Diseño }}</td>
+                                <td>{{ pantalonpalazo_dama.Color }}</td>
+                                <td>{{ pantalonpalazo_dama.Precio }}</td>
+                                <td>{{ pantalonpalazo_dama.S1 }}</td>
+                                <td>{{ pantalonpalazo_dama.S2 }}</td>
+                                <td>{{ pantalonpalazo_dama.S3 }}</td>
+                                <td>{{ pantalonpalazo_dama.Almacen }}</td>
+                                <td>{{ pantalonpalazo_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggerinterfil_dama' %}
+                <h2 class="text-center">Unidades Jogger Interfil Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggerinterfil_dama in joggerinterfils_dama %}
+                            <tr>
+                                <td>{{ joggerinterfil_dama.Codigo }}</td>
+                                <td>{{ joggerinterfil_dama.Talla }}</td>
+                                <td>{{ joggerinterfil_dama.Marca }}</td>
+                                <td>{{ joggerinterfil_dama.Modelo }}</td>
+                                <td>{{ joggerinterfil_dama.Diseño }}</td>
+                                <td>{{ joggerinterfil_dama.Color }}</td>
+                                <td>{{ joggerinterfil_dama.Precio }}</td>
+                                <td>{{ joggerinterfil_dama.S1 }}</td>
+                                <td>{{ joggerinterfil_dama.S2 }}</td>
+                                <td>{{ joggerinterfil_dama.S3 }}</td>
+                                <td>{{ joggerinterfil_dama.Almacen }}</td>
+                                <td>{{ joggerinterfil_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggeroversizefranela_dama' %}
+                <h2 class="text-center">Unidades Jogger Oversize Franela Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggeroversizefranela_dama in joggeroversizefranelas_dama %}
+                            <tr>
+                                <td>{{ joggeroversizefranela_dama.Codigo }}</td>
+                                <td>{{ joggeroversizefranela_dama.Talla }}</td>
+                                <td>{{ joggeroversizefranela_dama.Marca }}</td>
+                                <td>{{ joggeroversizefranela_dama.Modelo }}</td>
+                                <td>{{ joggeroversizefranela_dama.Diseño }}</td>
+                                <td>{{ joggeroversizefranela_dama.Color }}</td>
+                                <td>{{ joggeroversizefranela_dama.Precio }}</td>
+                                <td>{{ joggeroversizefranela_dama.S1 }}</td>
+                                <td>{{ joggeroversizefranela_dama.S2 }}</td>
+                                <td>{{ joggeroversizefranela_dama.S3 }}</td>
+                                <td>{{ joggeroversizefranela_dama.Almacen }}</td>
+                                <td>{{ joggeroversizefranela_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggeroversizeterry_dama' %}
+                <h2 class="text-center">Unidades Jogger Oversize Terry Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggeroversizeterry_dama in joggeroversizeterrys_dama %}
+                            <tr>
+                                <td>{{ joggeroversizeterry_dama.Codigo }}</td>
+                                <td>{{ joggeroversizeterry_dama.Talla }}</td>
+                                <td>{{ joggeroversizeterry_dama.Marca }}</td>
+                                <td>{{ joggeroversizeterry_dama.Modelo }}</td>
+                                <td>{{ joggeroversizeterry_dama.Diseño }}</td>
+                                <td>{{ joggeroversizeterry_dama.Color }}</td>
+                                <td>{{ joggeroversizeterry_dama.Precio }}</td>
+                                <td>{{ joggeroversizeterry_dama.S1 }}</td>
+                                <td>{{ joggeroversizeterry_dama.S2 }}</td>
+                                <td>{{ joggeroversizeterry_dama.S3 }}</td>
+                                <td>{{ joggeroversizeterry_dama.Almacen }}</td>
+                                <td>{{ joggeroversizeterry_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggerbotapiefranela_dama' %}
+                <h2 class="text-center">Unidades Jogger Botapie Franela Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggerbotapiefranela_dama in joggerbotapiefranelas_dama %}
+                            <tr>
+                                <td>{{ joggerbotapiefranela_dama.Codigo }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Talla }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Marca }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Modelo }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Diseño }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Color }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Precio }}</td>
+                                <td>{{ joggerbotapiefranela_dama.S1 }}</td>
+                                <td>{{ joggerbotapiefranela_dama.S2 }}</td>
+                                <td>{{ joggerbotapiefranela_dama.S3 }}</td>
+                                <td>{{ joggerbotapiefranela_dama.Almacen }}</td>
+                                <td>{{ joggerbotapiefranela_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'poloversize_dama' %}
+                <h2 class="text-center">Unidades Polo Oversize Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for polooversize_dama in poloversizes_dama %}
+                            <tr>
+                                <td>{{ polooversize_dama.Codigo }}</td>
+                                <td>{{ polooversize_dama.Talla }}</td>
+                                <td>{{ polooversize_dama.Marca }}</td>
+                                <td>{{ polooversize_dama.Modelo }}</td>
+                                <td>{{ polooversize_dama.Diseño }}</td>
+                                <td>{{ polooversize_dama.Color }}</td>
+                                <td>{{ polooversize_dama.Precio }}</td>
+                                <td>{{ polooversize_dama.S1 }}</td>
+                                <td>{{ polooversize_dama.S2 }}</td>
+                                <td>{{ polooversize_dama.S3 }}</td>
+                                <td>{{ polooversize_dama.Almacen }}</td>
+                                <td>{{ polooversize_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'joggerbotapieterry_dama' %}
+                <h2 class="text-center">Unidades Jogger Botapie Terry Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for joggerbotapieterry_dama in joggerbotapieterrys_dama %}
+                            <tr>
+                                <td>{{ joggerbotapieterry_dama.Codigo }}</td>
+                                <td>{{ joggerbotapieterry_dama.Talla }}</td>
+                                <td>{{ joggerbotapieterry_dama.Marca }}</td>
+                                <td>{{ joggerbotapieterry_dama.Modelo }}</td>
+                                <td>{{ joggerbotapieterry_dama.Diseño }}</td>
+                                <td>{{ joggerbotapieterry_dama.Color }}</td>
+                                <td>{{ joggerbotapieterry_dama.Precio }}</td>
+                                <td>{{ joggerbotapieterry_dama.S1 }}</td>
+                                <td>{{ joggerbotapieterry_dama.S2 }}</td>
+                                <td>{{ joggerbotapieterry_dama.S3 }}</td>
+                                <td>{{ joggerbotapieterry_dama.Almacen }}</td>
+                                <td>{{ joggerbotapieterry_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pantalonetaterry_dama' %}
+                <h2 class="text-center">Unidades Pantaloneta Terry Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pantalonetaterry_dama in pantalonetaterrys_dama %}
+                            <tr>
+                                <td>{{ pantalonetaterry_dama.Codigo }}</td>
+                                <td>{{ pantalonetaterry_dama.Talla }}</td>
+                                <td>{{ pantalonetaterry_dama.Marca }}</td>
+                                <td>{{ pantalonetaterry_dama.Modelo }}</td>
+                                <td>{{ pantalonetaterry_dama.Diseño }}</td>
+                                <td>{{ pantalonetaterry_dama.Color }}</td>
+                                <td>{{ pantalonetaterry_dama.Precio }}</td>
+                                <td>{{ pantalonetaterry_dama.S1 }}</td>
+                                <td>{{ pantalonetaterry_dama.S2 }}</td>
+                                <td>{{ pantalonetaterry_dama.S3 }}</td>
+                                <td>{{ pantalonetaterry_dama.Almacen }}</td>
+                                <td>{{ pantalonetaterry_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pololicramangacorta_dama' %}
+                <h2 class="text-center">Unidades Polos Licra Manga Corta Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pololicramangacorta_dama in pololicrasmangacorta_dama %}
+                            <tr>
+                                <td>{{ pololicramangacorta_dama.Codigo }}</td>
+                                <td>{{ pololicramangacorta_dama.Talla }}</td>
+                                <td>{{ pololicramangacorta_dama.Marca }}</td>
+                                <td>{{ pololicramangacorta_dama.Modelo }}</td>
+                                <td>{{ pololicramangacorta_dama.Diseño }}</td>
+                                <td>{{ pololicramangacorta_dama.Color }}</td>
+                                <td>{{ pololicramangacorta_dama.Precio }}</td>
+                                <td>{{ pololicramangacorta_dama.S1 }}</td>
+                                <td>{{ pololicramangacorta_dama.S2 }}</td>
+                                <td>{{ pololicramangacorta_dama.S3 }}</td>
+                                <td>{{ pololicramangacorta_dama.Almacen }}</td>
+                                <td>{{ pololicramangacorta_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'pololicramangalarga_dama' %}
+                <h2 class="text-center">Unidades Polos Licra Manga Larga Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pololicramangalarga_dama in poloslicramangalarga_dama %}
+                            <tr>
+                                <td>{{ pololicramangalarga_dama.Codigo }}</td>
+                                <td>{{ pololicramangalarga_dama.Talla }}</td>
+                                <td>{{ pololicramangalarga_dama.Marca }}</td>
+                                <td>{{ pololicramangalarga_dama.Modelo }}</td>
+                                <td>{{ pololicramangalarga_dama.Diseño }}</td>
+                                <td>{{ pololicramangalarga_dama.Color }}</td>
+                                <td>{{ pololicramangalarga_dama.Precio }}</td>
+                                <td>{{ pololicramangalarga_dama.S1 }}</td>
+                                <td>{{ pololicramangalarga_dama.S2 }}</td>
+                                <td>{{ pololicramangalarga_dama.S3 }}</td>
+                                <td>{{ pololicramangalarga_dama.Almacen }}</td>
+                                <td>{{ pololicramangalarga_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'polocroplicra_dama' %}
+                <h2 class="text-center">Unidades Polos Crop Licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for polocroplicra_dama in poloscroplicra_dama %}
+                            <tr>
+                                <td>{{ polocroplicra_dama.Codigo }}</td>
+                                <td>{{ polocroplicra_dama.Talla }}</td>
+                                <td>{{ polocroplicra_dama.Marca }}</td>
+                                <td>{{ polocroplicra_dama.Modelo }}</td>
+                                <td>{{ polocroplicra_dama.Diseño }}</td>
+                                <td>{{ polocroplicra_dama.Color }}</td>
+                                <td>{{ polocroplicra_dama.Precio }}</td>
+                                <td>{{ polocroplicra_dama.S1 }}</td>
+                                <td>{{ polocroplicra_dama.S2 }}</td>
+                                <td>{{ polocroplicra_dama.S3 }}</td>
+                                <td>{{ polocroplicra_dama.Almacen }}</td>
+                                <td>{{ polocroplicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shortlicra_dama' %}
+                <h2 class="text-center">Unidades Short Licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shortlicra_dama in shortslicra_dama %}
+                            <tr>
+                                <td>{{ shortlicra_dama.Codigo }}</td>
+                                <td>{{ shortlicra_dama.Talla }}</td>
+                                <td>{{ shortlicra_dama.Marca }}</td>
+                                <td>{{ shortlicra_dama.Modelo }}</td>
+                                <td>{{ shortlicra_dama.Diseño }}</td>
+                                <td>{{ shortlicra_dama.Color }}</td>
+                                <td>{{ shortlicra_dama.Precio }}</td>
+                                <td>{{ shortlicra_dama.S1 }}</td>
+                                <td>{{ shortlicra_dama.S2 }}</td>
+                                <td>{{ shortlicra_dama.S3 }}</td>
+                                <td>{{ shortlicra_dama.Almacen }}</td>
+                                <td>{{ shortlicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'bikerlicra_dama' %}
+                <h2 class="text-center">Unidades Biker Licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bikerlicra_dama in bikerslicra_dama %}
+                            <tr>
+                                <td>{{ bikerlicra_dama.Codigo }}</td>
+                                <td>{{ bikerlicra_dama.Talla }}</td>
+                                <td>{{ bikerlicra_dama.Marca }}</td>
+                                <td>{{ bikerlicra_dama.Modelo }}</td>
+                                <td>{{ bikerlicra_dama.Diseño }}</td>
+                                <td>{{ bikerlicra_dama.Color }}</td>
+                                <td>{{ bikerlicra_dama.Precio }}</td>
+                                <td>{{ bikerlicra_dama.S1 }}</td>
+                                <td>{{ bikerlicra_dama.S2 }}</td>
+                                <td>{{ bikerlicra_dama.S3 }}</td>
+                                <td>{{ bikerlicra_dama.Almacen }}</td>
+                                <td>{{ bikerlicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'snikerlicra_dama' %}
+                <h2 class="text-center">Unidades Sniker Licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for snikerlicra_dama in snikerslicra_dama %}
+                            <tr>
+                                <td>{{ snikerlicra_dama.Codigo }}</td>
+                                <td>{{ snikerlicra_dama.Talla }}</td>
+                                <td>{{ snikerlicra_dama.Marca }}</td>
+                                <td>{{ snikerlicra_dama.Modelo }}</td>
+                                <td>{{ snikerlicra_dama.Diseño }}</td>
+                                <td>{{ snikerlicra_dama.Color }}</td>
+                                <td>{{ snikerlicra_dama.Precio }}</td>
+                                <td>{{ snikerlicra_dama.S1 }}</td>
+                                <td>{{ snikerlicra_dama.S2 }}</td>
+                                <td>{{ snikerlicra_dama.S3 }}</td>
+                                <td>{{ snikerlicra_dama.Almacen }}</td>
+                                <td>{{ snikerlicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'faldashortlicra_dama' %}
+                <h2 class="text-center">Unidades Flada Short Licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for faldashortlicra_dama in faldashortslicra_dama %}
+                            <tr>
+                                <td>{{ faldashortlicra_dama.Codigo }}</td>
+                                <td>{{ faldashortlicra_dama.Talla }}</td>
+                                <td>{{ faldashortlicra_dama.Marca }}</td>
+                                <td>{{ faldashortlicra_dama.Modelo }}</td>
+                                <td>{{ faldashortlicra_dama.Diseño }}</td>
+                                <td>{{ faldashortlicra_dama.Color }}</td>
+                                <td>{{ faldashortlicra_dama.Precio }}</td>
+                                <td>{{ faldashortlicra_dama.S1 }}</td>
+                                <td>{{ faldashortlicra_dama.S2 }}</td>
+                                <td>{{ faldashortlicra_dama.S3 }}</td>
+                                <td>{{ faldashortlicra_dama.Almacen }}</td>
+                                <td>{{ faldashortlicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shortterry_dama' %}
+                <h2 class="text-center">Unidades  Short Terry Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shortterry_dama in shortterrys_dama %}
+                            <tr>
+                                <td>{{ shortterry_dama.Codigo }}</td>
+                                <td>{{ shortterry_dama.Talla }}</td>
+                                <td>{{ shortterry_dama.Marca }}</td>
+                                <td>{{ shortterry_dama.Modelo }}</td>
+                                <td>{{ shortterry_dama.Diseño }}</td>
+                                <td>{{ shortterry_dama.Color }}</td>
+                                <td>{{ shortterry_dama.Precio }}</td>
+                                <td>{{ shortterry_dama.S1 }}</td>
+                                <td>{{ shortterry_dama.S2 }}</td>
+                                <td>{{ shortterry_dama.S3 }}</td>
+                                <td>{{ shortterry_dama.Almacen }}</td>
+                                <td>{{ shortterry_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shorttelamojada_dama' %}
+                <h2 class="text-center">Unidades  Short Tela Mojada Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shorttelamojada_dama in shorttelamojadas_dama %}
+                            <tr>
+                                <td>{{ shorttelamojada_dama.Codigo }}</td>
+                                <td>{{ shorttelamojada_dama.Talla }}</td>
+                                <td>{{ shorttelamojada_dama.Marca }}</td>
+                                <td>{{ shorttelamojada_dama.Modelo }}</td>
+                                <td>{{ shorttelamojada_dama.Diseño }}</td>
+                                <td>{{ shorttelamojada_dama.Color }}</td>
+                                <td>{{ shorttelamojada_dama.Precio }}</td>
+                                <td>{{ shorttelamojada_dama.S1 }}</td>
+                                <td>{{ shorttelamojada_dama.S2 }}</td>
+                                <td>{{ shorttelamojada_dama.S3 }}</td>
+                                <td>{{ shorttelamojada_dama.Almacen }}</td>
+                                <td>{{ shorttelamojada_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'shortnovadama' %}
+                <h2 class="text-center">Unidades  Short  Nova Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shortnova_dama in shortnovasdama %}
+                            <tr>
+                                <td>{{ shortnova_dama.Codigo }}</td>
+                                <td>{{ shortnova_dama.Talla }}</td>
+                                <td>{{ shortnova_dama.Marca }}</td>
+                                <td>{{ shortnova_dama.Modelo }}</td>
+                                <td>{{ shortnova_dama.Diseño }}</td>
+                                <td>{{ shortnova_dama.Color }}</td>
+                                <td>{{ shortnova_dama.Precio }}</td>
+                                <td>{{ shortnova_dama.S1 }}</td>
+                                <td>{{ shortnova_dama.S2 }}</td>
+                                <td>{{ shortnova_dama.S3 }}</td>
+                                <td>{{ shortnova_dama.Almacen }}</td>
+                                <td>{{ shortnova_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'poloalgodonmangacorta_dama' %}
+                <h2 class="text-center">Unidades Polo Algodon Manga Corta Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for poloalgodonmangacorta_dama in poloalgodonmangacortas_dama %}
+                            <tr>
+                                <td>{{ poloalgodonmangacorta_dama.Codigo }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Talla }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Marca }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Modelo }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Diseño }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Color }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Precio }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.S1 }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.S2 }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.S3 }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.Almacen }}</td>
+                                <td>{{ poloalgodonmangacorta_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'poloalgodonmangalarga_dama' %}
+                <h2 class="text-center">Unidades Polo Algodon Manga Larga Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for poloalgodonmangalarga_dama in poloalgodonmangalargas_dama %}
+                            <tr>
+                                <td>{{ poloalgodonmangalarga_dama.Codigo }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Talla }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Marca }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Modelo }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Diseño }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Color }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Precio }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.S1 }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.S2 }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.S3 }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.Almacen }}</td>
+                                <td>{{ poloalgodonmangalarga_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'polocuellocamisero_dama' %}
+                <h2 class="text-center">Unidades Polo Algodon Cuello Camisero Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for polocuellocamisero_dama in polocuellocamiseros_dama %}
+                            <tr>
+                                <td>{{ polocuellocamisero_dama.Codigo }}</td>
+                                <td>{{ polocuellocamisero_dama.Talla }}</td>
+                                <td>{{ polocuellocamisero_dama.Marca }}</td>
+                                <td>{{ polocuellocamisero_dama.Modelo }}</td>
+                                <td>{{ polocuellocamisero_dama.Diseño }}</td>
+                                <td>{{ polocuellocamisero_dama.Color }}</td>
+                                <td>{{ polocuellocamisero_dama.Precio }}</td>
+                                <td>{{ polocuellocamisero_dama.S1 }}</td>
+                                <td>{{ polocuellocamisero_dama.S2 }}</td>
+                                <td>{{ polocuellocamisero_dama.S3 }}</td>
+                                <td>{{ polocuellocamisero_dama.Almacen }}</td>
+                                <td>{{ polocuellocamisero_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'casacalicra_dama' %}
+                <h2 class="text-center">Unidades Casaca Licra Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for casacalicra_dama in casacalicras_dama %}
+                            <tr>
+                                <td>{{ casacalicra_dama.Codigo }}</td>
+                                <td>{{ casacalicra_dama.Talla }}</td>
+                                <td>{{ casacalicra_dama.Marca }}</td>
+                                <td>{{ casacalicra_dama.Modelo }}</td>
+                                <td>{{ casacalicra_dama.Diseño }}</td>
+                                <td>{{ casacalicra_dama.Color }}</td>
+                                <td>{{ casacalicra_dama.Precio }}</td>
+                                <td>{{ casacalicra_dama.S1 }}</td>
+                                <td>{{ casacalicra_dama.S2 }}</td>
+                                <td>{{ casacalicra_dama.S3 }}</td>
+                                <td>{{ casacalicra_dama.Almacen }}</td>
+                                <td>{{ casacalicra_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'casacacortaviento_dama' %}
+                <h2 class="text-center">Unidades Casaca Cortaviento Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for casacacortaviento_dama in casacacortavientos_dama %}
+                            <tr>
+                                <td>{{ casacacortaviento_dama.Codigo }}</td>
+                                <td>{{ casacacortaviento_dama.Talla }}</td>
+                                <td>{{ casacacortaviento_dama.Marca }}</td>
+                                <td>{{ casacacortaviento_dama.Modelo }}</td>
+                                <td>{{ casacacortaviento_dama.Diseño }}</td>
+                                <td>{{ casacacortaviento_dama.Color }}</td>
+                                <td>{{ casacacortaviento_dama.Precio }}</td>
+                                <td>{{ casacacortaviento_dama.S1 }}</td>
+                                <td>{{ casacacortaviento_dama.S2 }}</td>
+                                <td>{{ casacacortaviento_dama.S3 }}</td>
+                                <td>{{ casacacortaviento_dama.Almacen }}</td>
+                                <td>{{ casacacortaviento_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'top_dama' %}
+                <h2 class="text-center">Unidades TOP Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for top_dama in tops_dama %}
+                            <tr>
+                                <td>{{ top_dama.Codigo }}</td>
+                                <td>{{ top_dama.Talla }}</td>
+                                <td>{{ top_dama.Marca }}</td>
+                                <td>{{ top_dama.Modelo }}</td>
+                                <td>{{ top_dama.Diseño }}</td>
+                                <td>{{ top_dama.Color }}</td>
+                                <td>{{ top_dama.Precio }}</td>
+                                <td>{{ top_dama.S1 }}</td>
+                                <td>{{ top_dama.S2 }}</td>
+                                <td>{{ top_dama.S3 }}</td>
+                                <td>{{ top_dama.Almacen }}</td>
+                                <td>{{ top_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'bividi_dama' %}
+                <h2 class="text-center">Unidades Bividi Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bividi_dama in bividis_dama %}
+                            <tr>
+                                <td>{{ bividi_dama.Codigo }}</td>
+                                <td>{{ bividi_dama.Talla }}</td>
+                                <td>{{ bividi_dama.Marca }}</td>
+                                <td>{{ bividi_dama.Modelo }}</td>
+                                <td>{{ bividi_dama.Diseño }}</td>
+                                <td>{{ bividi_dama.Color }}</td>
+                                <td>{{ bividi_dama.Precio }}</td>
+                                <td>{{ bividi_dama.S1 }}</td>
+                                <td>{{ bividi_dama.S2 }}</td>
+                                <td>{{ bividi_dama.S3 }}</td>
+                                <td>{{ bividi_dama.Almacen }}</td>
+                                <td>{{ bividi_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'enterizo_dama' %}
+                <h2 class="text-center">Unidades Enterizo Dama  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for enterizo_dama in enterizos_dama %}
+                            <tr>
+                                <td>{{ enterizo_dama.Codigo }}</td>
+                                <td>{{ enterizo_dama.Talla }}</td>
+                                <td>{{ enterizo_dama.Marca }}</td>
+                                <td>{{ enterizo_dama.Modelo }}</td>
+                                <td>{{ enterizo_dama.Diseño }}</td>
+                                <td>{{ enterizo_dama.Color }}</td>
+                                <td>{{ enterizo_dama.Precio }}</td>
+                                <td>{{ enterizo_dama.S1 }}</td>
+                                <td>{{ enterizo_dama.S2 }}</td>
+                                <td>{{ enterizo_dama.S3 }}</td>
+                                <td>{{ enterizo_dama.Almacen }}</td>
+                                <td>{{ enterizo_dama.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'ConjuntoInterfil_Niño' %}
+                <h2 class="text-center">Conjunto Interfil niño  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ConjuntoInterfil_Niño in ConjuntoInterfils_Niño %}
+                            <tr>
+                                <td>{{ ConjuntoInterfil_Niño.Codigo }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Talla }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Marca }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Modelo }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Diseño }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Color }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Precio }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.S1 }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.S2 }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.S3 }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.Almacen }}</td>
+                                <td>{{ ConjuntoInterfil_Niño.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'ConjuntoNova_Niño' %}
+                <h2 class="text-center">Conjunto Nova Niño  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ConjuntoNova_Niño in ConjuntoNovas_Niño %}
+                            <tr>
+                                <td>{{ ConjuntoNova_Niño.Codigo }}</td>
+                                <td>{{ ConjuntoNova_Niño.Talla }}</td>
+                                <td>{{ ConjuntoNova_Niño.Marca }}</td>
+                                <td>{{ ConjuntoNova_Niño.Modelo }}</td>
+                                <td>{{ ConjuntoNova_Niño.Diseño }}</td>
+                                <td>{{ ConjuntoNova_Niño.Color }}</td>
+                                <td>{{ ConjuntoNova_Niño.Precio }}</td>
+                                <td>{{ ConjuntoNova_Niño.S1 }}</td>
+                                <td>{{ ConjuntoNova_Niño.S2 }}</td>
+                                <td>{{ ConjuntoNova_Niño.S3 }}</td>
+                                <td>{{ ConjuntoNova_Niño.Almacen }}</td>
+                                <td>{{ ConjuntoNova_Niño.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'ConjuntoNova_Niña' %}
+                <h2 class="text-center">Conjunto Nova Niña  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ConjuntoNova_Niña in ConjuntoNovas_Niña %}
+                            <tr>
+                                <td>{{ ConjuntoNova_Niña.Codigo }}</td>
+                                <td>{{ ConjuntoNova_Niña.Talla }}</td>
+                                <td>{{ ConjuntoNova_Niña.Marca }}</td>
+                                <td>{{ ConjuntoNova_Niña.Modelo }}</td>
+                                <td>{{ ConjuntoNova_Niña.Diseño }}</td>
+                                <td>{{ ConjuntoNova_Niña.Color }}</td>
+                                <td>{{ ConjuntoNova_Niña.Precio }}</td>
+                                <td>{{ ConjuntoNova_Niña.S1 }}</td>
+                                <td>{{ ConjuntoNova_Niña.S2 }}</td>
+                                <td>{{ ConjuntoNova_Niña.S3 }}</td>
+                                <td>{{ ConjuntoNova_Niña.Almacen }}</td>
+                                <td>{{ ConjuntoNova_Niña.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if filtro_tipo == 'todos' or filtro_tipo == 'ConjuntoLicra_Niña' %}
+                <h2 class="text-center">Conjunto Licra Niña  </h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Diseño</th>
+                                <th>Color</th>
+                                <th>Precio</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                                <th>Almacen</th>
+                                <th>Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ConjuntoLicra_Niña in ConjuntoLicras_Niña %}
+                            <tr>
+                                <td>{{ ConjuntoLicra_Niña.Codigo }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Talla }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Marca }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Modelo }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Diseño }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Color }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Precio }}</td>
+                                <td>{{ ConjuntoLicra_Niña.S1 }}</td>
+                                <td>{{ ConjuntoLicra_Niña.S2 }}</td>
+                                <td>{{ ConjuntoLicra_Niña.S3 }}</td>
+                                <td>{{ ConjuntoLicra_Niña.Almacen }}</td>
+                                <td>{{ ConjuntoLicra_Niña.total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+  <!--          
+                        Conjunto NIÑO
+                        Conjunto NIÑA
+                        <option value="ConjuntoLicra_Niña" {% if filtro_tipo == 'ConjuntoLicra_Niña' %}selected{% endif %}> CNA . Licra  </option>     
+
+  -->
+    </div>
+{% endblock %}
